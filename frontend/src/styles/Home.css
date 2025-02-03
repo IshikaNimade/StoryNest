@@ -1,0 +1,34 @@
+
+.home-container {
+ background-color: #e7dfd8;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.content-box {
+  border: 2px solid #000000;
+  padding: 30px;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 10px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 2000px;
+  border-radius: 8px;
+}
+
