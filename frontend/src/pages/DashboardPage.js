@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { Stack, Avatar, Typography, Button, Paper, Box } from "@mui/material";
+import { Stack, Paper, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
-import { useAuth } from "../utils/auth";
-import Navbar from "../components/Navbar";
+import useAuth from "../hooks/useAuth";
+import Sidebar from "../components/Sidebar";
 
 const DashboardPage = () => {
-  const { user, signOutUser } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,49 +14,38 @@ const DashboardPage = () => {
     }
   }, [user, navigate]);
 
-  const handleSignOut = async () => {
+  const handleLogout = async () => {
     try {
-      await signOutUser();
+      await logout();
       navigate("/login");
     } catch (error) {
-      console.error("Logout error: ", error);
+      console.error("Logout error:", error);
     }
   };
 
-  if (!user) {
-    return null;
-  }
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
-    <Stack>
-      <Navbar />
-      <Box sx={{ padding: 4 }}>
-        <Paper elevation={3} sx={{ padding: 3, textAlign: "center" }}>
-          <Stack alignItems="center" spacing={2}>
-            <Avatar
-              src={user?.imageUrl}
-              alt={user?.name}
-              sx={{ width: 80, height: 80 }}
-            />
-            <Typography variant="h5" component="h2">
-              {user?.name}
+    <Stack direction="column" sx={{ height: "100vh", overflow: "hidden" }}>
+      <Stack direction="row" sx={{ flex: 1 }}>
+        <Sidebar
+          user={user}
+          handleNavigation={handleNavigation}
+          handleLogout={handleLogout}
+        />
+        <Box sx={{ flex: 1, padding: 4 }}>
+          <Paper elevation={3} sx={{ padding: 3, textAlign: "center" }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Welcome to the Dashboard
             </Typography>
-            <Typography variant="body2" color="textSecondary">
-              {user?.email}
+            <Typography variant="body1" color="textSecondary">
+              Use the sidebar to navigate to different sections.
             </Typography>
-
-            <Button
-              variant="contained"
-              color="secondary"
-              startIcon={<Logout />}
-              onClick={handleSignOut}
-              sx={{ marginTop: 2 }}
-            >
-              Log Out
-            </Button>
-          </Stack>
-        </Paper>
-      </Box>
+          </Paper>
+        </Box>
+      </Stack>
     </Stack>
   );
 };

@@ -10,7 +10,6 @@ import blog from "../assets/blogBackground.jpg";
 const Home = () => {
   return (
     <div className="home-container">
-      {/* Main Content Box */}
       <Box className="content-box">
         <Stack
           direction={"row"}
@@ -69,7 +68,6 @@ const Home = () => {
                 effortlessly. Whether you're a seasoned blogger or just starting
                 out, StoryNest connects your voice to the world. 🚀
               </Typography>
-
               <LoginButton />
             </Stack>
             <Stack className="image-container">

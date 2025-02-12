@@ -14,7 +14,7 @@ const getUserByUid = async (uid) => {
   }
 };
 
-const createUser = async ({ uid, email, name, imageUrl, emailVerified }) => {
+const createUser = async ({ uid, email, name, photoURL, emailVerified }) => {
   try {
     const userDoc = await db.collection("users").doc(uid).get();
     if (!userDoc.exists) {
@@ -22,7 +22,7 @@ const createUser = async ({ uid, email, name, imageUrl, emailVerified }) => {
         uid,
         email,
         name,
-        imageUrl,
+        photoURL,
         emailVerified,
       };
       await db.collection("users").doc(uid).set(newUser);

@@ -11,7 +11,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Apply authentication middleware to protect routes
 app.use(authenticate);
 
 const resolvers = {

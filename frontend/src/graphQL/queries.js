@@ -6,7 +6,7 @@ export const GET_USER = gql`
       uid
       email
       name
-      imageUrl
+      photoURL
       emailVerified
     }
   }

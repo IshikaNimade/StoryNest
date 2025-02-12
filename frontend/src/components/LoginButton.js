@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Typography, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/auth";
+import useAuth from "../hooks/useAuth";
 import Google from "../assets/googleLogo.png";
 
 const LoginButton = () => {
-  const { signInUser, loginError } = useAuth();
   const navigate = useNavigate();
+  const { signInUser, loginError } = useAuth();
 
   const handleSignIn = async () => {
     try {
@@ -18,7 +18,7 @@ const LoginButton = () => {
   };
 
   return (
-    <Stack alignItems="center" spacing={2} paddingTop={"10px"}>
+    <Stack spacing={2} paddingTop={"10px"}>
       <Button
         variant="contained"
         sx={{

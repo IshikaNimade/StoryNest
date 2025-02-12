@@ -5,7 +5,7 @@ const typeDefs = gql`
     uid: ID!
     email: String!
     name: String!
-    imageUrl: String!
+    photoURL: String!
     emailVerified: Boolean!
   }
 
@@ -14,7 +14,7 @@ const typeDefs = gql`
       uid: String!
       email: String!
       name: String!
-      imageUrl: String!
+      photoURL: String!
       emailVerified: Boolean!
     ): User
   }

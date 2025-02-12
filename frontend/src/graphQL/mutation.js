@@ -5,20 +5,20 @@ export const CREATE_USER = gql`
     $uid: String!
     $email: String!
     $name: String!
-    $imageUrl: String!
+    $photoURL: String!
     $emailVerified: Boolean!
   ) {
     createUser(
       uid: $uid
       email: $email
       name: $name
-      imageUrl: $imageUrl
+      photoURL: $photoURL
       emailVerified: $emailVerified
     ) {
       uid
       email
       name
-      imageUrl
+      photoURL
       emailVerified
     }
   }

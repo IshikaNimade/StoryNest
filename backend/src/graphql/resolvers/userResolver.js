@@ -9,7 +9,7 @@ const userResolver = {
           uid: user.uid,
           email: user.email,
           name: user.name,
-          imageUrl: user.imageUrl,
+          photoURL: user.photoURL,
           emailVerified: user.emailVerified,
         };
       } catch (error) {
@@ -19,20 +19,20 @@ const userResolver = {
     },
   },
   Mutation: {
-    createUser: async (_, { uid, email, name, imageUrl, emailVerified }) => {
+    createUser: async (_, { uid, email, name, photoURL, emailVerified }) => {
       try {
         const newUser = await userService.createUser({
           uid,
           email,
           name,
-          imageUrl,
+          photoURL,
           emailVerified,
         });
         return {
           uid: newUser.uid,
           email: newUser.email,
           name: newUser.name,
-          imageUrl: newUser.imageUrl,
+          photoURL: newUser.photoURL,
           emailVerified: newUser.emailVerified,
         };
       } catch (error) {

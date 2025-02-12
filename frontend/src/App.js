@@ -1,23 +1,33 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ApolloProviderComponent } from "./context/apolloClient";
-import Home from "./pages/Home";
-import DashboardPage from "./pages/DashboardPage";
+import { AuthProvider } from "./context/AuthContext";
+import { routes } from "./routes";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
     <ApolloProviderComponent>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Home />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            {routes.map((route) =>
+              route.private ? (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={<PrivateRoute>{route.element}</PrivateRoute>}
+                />
+              ) : (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              )
+            )}
+          </Routes>
+        </Router>
+      </AuthProvider>
     </ApolloProviderComponent>
   );
 }
